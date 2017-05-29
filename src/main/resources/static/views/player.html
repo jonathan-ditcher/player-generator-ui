@@ -1,0 +1,86 @@
+<div id="container" ng-controller="playerController">
+
+    <button ng-click="progressPlayer()" class="button" style="margin-left: 20px;">Progress player 1 year</button>
+
+    <h2>Details</h2>
+    <ul class="columns">
+        <li>Name</li>
+        <li>Age</li>
+        <li>Position</li>
+        <li>Nationality</li>
+        <li>Ability</li>
+        <li>Initial ability</li>
+        <li>Potential ability</li>
+
+        <li>{{ player.name }}</li>
+        <li>{{ player.age }}</li>
+        <li>{{ player.position.description }}</li>
+        <li><img src="{{flagSrc}}"/> {{ player.nationality.adjective }}</li>
+        <li>{{ player.currentAbility | integerValue }}</li>
+        <li>{{ player.initialAbility | integerValue }}</li>
+        <li>{{ player.potentialAbility | integerValue }}</li>
+    </ul>
+
+    <h2>Attributes</h2>
+    <div class="left">
+        <h3 class="attributes-heading">Technical Attributes</h3>
+        <table>
+            <tr ng-repeat="(key,val) in technicalAttributes">
+                <td class="attribute-text">{{key}}</td>
+                <td><div class="attribute-div" style="background: -webkit-linear-gradient(left, rgba(66, 170, 244, {{0.2 + val/2000}}), rgba(66, 170, 244, {{0.2 + val/2000}}) {{val/20}}%, rgb(207, 209, 211) {{(val/20)}}%, rgb(207, 209, 211));"></div></td>
+                <td class="attribute-value-text">{{val/100 | attributeValue}}</td>
+            </tr>
+        </table>
+
+        <h3 style="margin-top: 20px;" class="attributes-heading">Physical Attributes</h3>
+        <table>
+            <tr ng-repeat="(key,val) in physicalAttributes">
+                <td class="attribute-text">{{key}}</td>
+                <td><div class="attribute-div" style="background: -webkit-linear-gradient(left, rgba(66, 170, 244, {{0.2 + val/2000}}), rgba(66, 170, 244, {{0.2 + val/2000}}) {{val/20}}%, rgb(207, 209, 211) {{(val/20)}}%, rgb(207, 209, 211));"></div></td>
+                <td class="attribute-value-text">{{val/100 | attributeValue}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="right">
+        <h3 class="attributes-heading">Mental Attributes</h3>
+        <table>
+            <tr ng-repeat="(key,val) in mentalAttributes">
+                <td class="attribute-text">{{key}}</td>
+                <td><div class="attribute-div" style="background: -webkit-linear-gradient(left, rgba(66, 170, 244, {{0.2 + val/2000}}), rgba(66, 170, 244, {{0.2 + val/2000}}) {{val/20}}%, rgb(207, 209, 211) {{(val/20)}}%, rgb(207, 209, 211));"></div></td>
+                <td class="attribute-value-text">{{val/100 | attributeValue}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="clear"></div>
+
+    <h2>Position</h2>
+    <div class="left">
+
+        <h3 class="attributes-heading">Positions</h3>
+        <table>
+            <tr ng-repeat="position in positions">
+                <td class="attribute-text">{{position.position}}</td>
+                <td class="attribute-value-text">{{position.description}}</td>
+            </tr>
+        </table>
+
+        <h3 class="attributes-heading" style="margin-top: 20px;">Feet</h3>
+        <table>
+            <tr>
+                <td class="attribute-text">Left Foot</td>
+                <td class="attribute-value-text">{{leftFoot}}</td>
+            </tr>
+            <tr>
+                <td class="attribute-text">Right Foot</td>
+                <td class="attribute-value-text">{{rightFoot}}</td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="right">
+        <img height="500" src="/position?id={{ player.id }}">
+    </div>
+    <div class="clear"></div>
+
+</div>
+

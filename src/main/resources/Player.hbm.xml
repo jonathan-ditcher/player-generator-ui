@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.ditcherj.generator.dto.Player" table="players" lazy="false">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="string" />
+        <property name="age" type="int" />
+        <property name="initialAbility" type="int" />
+        <property name="currentAbility" type="double" />
+        <property name="potentialAbility" type="double" />
+        <property name="primaryTemplateId" type="int" />
+
+        <component name="nationality" class="com.ditcherj.generator.dto.Nationality">
+            <property name="isoCode" type="string" column="nationality"/>
+        </component>
+
+        <component name="position" class="com.ditcherj.generator.dto.Position">
+            <property name="leftFoot" type="int" />
+            <property name="rightFoot" type="int" />
+            <property name="gk" type="int" />
+            <property name="sw" type="int" />
+            <property name="dr" type="int" />
+            <property name="dl" type="int" />
+            <property name="dc" type="int" />
+            <property name="wbr" type="int" />
+            <property name="wbl" type="int" />
+            <property name="dm" type="int" />
+            <property name="mc" type="int" />
+            <property name="mr" type="int" />
+            <property name="ml" type="int" />
+            <property name="amc" type="int" />
+            <property name="amr" type="int" />
+            <property name="aml" type="int" />
+            <property name="st" type="int" />
+        </component>
+
+        <map name="attributes">
+            <key column="id"/>
+            <map-key column="property_name">
+                <type name="org.hibernate.type.EnumType">
+                    <param name="enumClass">com.ditcherj.generator.dto.PlayerAttribute</param>
+                    <param name="useNamed">true</param>
+                </type>
+            </map-key>
+            <element column="property_value" type="double"/>
+        </map>
+
+    </class>
+
+</hibernate-mapping>

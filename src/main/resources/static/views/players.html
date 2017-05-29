@@ -1,0 +1,59 @@
+<form ng-controller="playersController">
+    <table st-table="items" st-pipe="getPlayers" class="table">
+        <thead>
+            <tr>
+                <td colspan="6" style="width: 100%;">
+                    <div class="btn-group pull-right ng-scope">
+                        <button type="button"
+                                ng-class="{'active':itemsByPage==10}"
+                                ng-click="itemsByPage=10"
+                                class="btn btn-default">10</button>
+                        <button type="button"
+                                ng-class="{'active':itemsByPage==25}"
+                                ng-click="itemsByPage=25"
+                                class="btn btn-default">25</button>
+                        <button type="button"
+                                ng-class="{'active':itemsByPage==50}"
+                                ng-click="itemsByPage=59"
+                                class="btn btn-default">50</button>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Age</th>
+                <th>Nationality</th>
+                <th>Ability</th>
+                <th>Potential Ability</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="player in items" data-ng-click="getPlayer(player.id)">
+                <td>{{ player.name }}</td>
+                <td>{{ player.position.description }}</td>
+                <td>{{ player.age }}</td>
+                <td>
+                    <img class="flag-image" src="{{player.flagSrc}}"/> {{ player.nationality.adjective }}
+                </td>
+                <td>
+                    <div ng-bind-html="getAbility(player.currentAbility)"></div>
+                </td>
+                <td>
+                    <div ng-bind-html="getAbility(player.potentialAbility)"></div>
+                <td>
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="6" class="text-center">
+                    <div st-template="views/pagination.html" st-pagination="" st-items-by-page="itemsByPage"></div>
+                </td>
+            </tr>
+        </tfoot>
+
+    </table>
+</form>
